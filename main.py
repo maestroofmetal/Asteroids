@@ -14,6 +14,7 @@ def main():
     
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
+    score = 0
     
     # Creates groups
     updatable = pygame.sprite.Group()
@@ -59,7 +60,7 @@ def main():
         # Adds collision detection
         for asteroid in asteroids:
             if player.collide(asteroid):
-                sys.exit("Game over!")
+                sys.exit(f"Game over! \nScore: {score}")
                 
         for asteroid in asteroids:
             for shot in shots_group:
@@ -67,6 +68,8 @@ def main():
                     if shot.collide(asteroid):
                         asteroid.split(asteroids)
                         shot.kill()
+                        score += 1
+                        
                 
                 
         # shoots
